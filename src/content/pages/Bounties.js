@@ -11,26 +11,14 @@ export default function Bounties(props) {
   // call to API to get all bounties
   useEffect(()=>{
     // TODO: Call the server
-    console.log(process.env.REACT_APP_SERVER_URL)
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/bounties`)
-    .then(response => {
-      console.log(response)
-      // TODO: Check for errors
-        // Set error message
-      // else
-        // setBounties()
-      setBounties(response.data)
-    }).catch(err=>{
-      setError(err.message)
-      console.log(err)
-    });
+    console.log('call the server for bounties!')
   }, [])
 
   let bountyList = bounties.length < 1 ? 
     <h3>There are no bounties</h3> :
     bounties.map((bounty, i) => (
-      // TODO: flesh out bounty div
-      <BountyCard key={`bounty-${i}`} {...bounty} setError={setError} />
+      // TODO: pass bounty deets
+      <BountyCard key={`bounty-${i}`} setError={setError} />
     ))
 
   return (

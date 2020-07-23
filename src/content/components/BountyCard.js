@@ -2,9 +2,12 @@ import React from 'react';
 import DeleteButton from './DeleteButton';
 
 export default function BountyCard(props) {
-  console.log(props.hunters)
   const hunterList = props.hunters.length > 0 
-    ? props.hunters.map((hunter, i) => <li key={`hunter-${i}`} className="hunter">{hunter}</li>)
+    ? props.hunters.map((hunter, i) => (
+      <li key={`hunter-${i}`} className="hunter">
+        {hunter}
+      </li>
+    ))
     : <li className="hunter">No hunters Assigned</li>
 
     const captured = <span className="green">CAPTURED</span>;

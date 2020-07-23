@@ -1,18 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function DeleteButton(props) {
   const handleDelete = e => {
-    axios.delete(`${process.env.REACT_APP_SERVER_URL}/bounties/${props.id}`)
-    .then(response => {
-      if (response.data.message) {
-        console.log(response.data.err)
-        props.setError(response.data.message)
-      }
-    }).catch(err=>{
-      console.log(err)
-      props.setError(err)
-    });
+    console.log('Deleting!')
   }
 
   return (
