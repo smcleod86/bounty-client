@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Bounties from './pages/Bounties';
-// import NewMuseum from './pages/museums/NewMuseum';
+import NewBounty from './pages/NewBounty';
 
 export default function Content() { 
   
@@ -11,8 +11,7 @@ export default function Content() {
     <main>
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route path="/museums/add" component={NewMuseum} /> */}
-        {/* <Route path="/museums/:dbid" component={ShowMuseum} /> */}
+        <Route path="/bounties/add" component={NewBounty} />
         <Route path="/bounties" component={Bounties} />
       </Switch>
     </main>

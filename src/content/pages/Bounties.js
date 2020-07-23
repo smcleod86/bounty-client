@@ -34,7 +34,7 @@ export default function Bounties(props) {
 
   return (
     <div>
-      <h1>bounties STUB</h1>
+      <h1>Intergalactic Bounty Board</h1>
       {/* TODO: Error Card */}
       {error ? <p>{error}</p> : null}
       <Link to='/bounties/add'>Add a Bounty</Link>
