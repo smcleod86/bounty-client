@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import BountyCard from '../components/BountyCard';
 import axios from 'axios';
 
 export default function Bounties(props) {
@@ -9,14 +10,15 @@ export default function Bounties(props) {
   // call to API to get all bounties
   useEffect(()=>{
     // TODO: Call the server
-    axios.get(`https://api.kanye.rest`)
+    console.log(process.env.REACT_APP_SERVER_URL)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/bounties`)
     .then(response => {
       console.log(response)
       // TODO: Check for errors
         // Set error message
       // else
         // setBounties()
-      setBounties([response.data.quote])
+      setBounties(response.data)
     }).catch(err=>{
       setError(err.message)
       console.log(err)
@@ -27,9 +29,7 @@ export default function Bounties(props) {
     <h3>There are no bounties</h3> :
     bounties.map((bounty, i) => (
       // TODO: flesh out bounty div
-      <div key={`bountyListItem-${i}`}>
-        {bounty}
-      </div>
+      <BountyCard key={`bounty-${i}`} {...bounty} />
     ))
 
   return (
@@ -38,7 +38,9 @@ export default function Bounties(props) {
       {/* TODO: Error Card */}
       {error ? <p>{error}</p> : null}
       <Link to='/bounties/add'>Add a Bounty</Link>
-      {bountyList}
+      <div className="bounty-container">
+        {bountyList}
+      </div>
     </div>
   )
 }

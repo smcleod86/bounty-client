@@ -8,13 +8,13 @@ import Bounties from './pages/Bounties';
 export default function Content() { 
   
   return (
-    <div className="App-content">
+    <main>
       <Switch>
         <Route exact path="/" component={Home} />
         {/* <Route path="/museums/add" component={NewMuseum} /> */}
         {/* <Route path="/museums/:dbid" component={ShowMuseum} /> */}
         <Route path="/bounties" component={Bounties} />
       </Switch>
-    </div>
+    </main>
   )
 }

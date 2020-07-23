@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 export default function Nav() {
   return (
-    <nav className="half">
-      <ul className="App-nav">
-        <li className="App-nav-link">
-          <Link to="/" className="App-link">Home</Link>
+    <nav>
+      <ul className="nav">
+        <li className="nav-link">
+          <Link to="/" className="link">Home</Link>
         </li>
-        <li className="App-nav-link">
-          <Link to="/bounties" className="App-link">Definitely not intergalactic bounties</Link>
+        <li className="nav-link">|</li>
+        <li className="nav-link">
+          <Link to="/bounties" className="link">Definitely not intergalactic bounties</Link>
         </li>
       </ul>
     </nav>
