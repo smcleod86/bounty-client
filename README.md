@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Daring to Decouple
 
-## Available Scripts
+We want to hook up our Bounty hunter server to a front end. What do we need to do to accomplish this? Let's plan it out.
 
-In the project directory, you can run:
+## Step one: look at the code you've got
 
-### `yarn start`
+Let's look at the code you've been given. What is it doing? 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Step two: setting up the server
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### CORS
 
-### `yarn test`
+Because we have a decoupled app, we aren't able to access our bounty server without allowing [Cross-origin Reference Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). Open up your bounty server and let't fix that.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Install `cors`
 
-### `yarn build`
+Run `npm i cors` to install the [cors module](https://www.npmjs.com/package/cors). If you haven't already, also install `dotenv` and require it at the top of your `server.js` (or whatever you named your entry-point).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### The easy way to impliment cors
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+We could fix this super quick by simply requiring cors, then `app.use`ing it.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+...
+const cors = require('cors');
 
-### `yarn eject`
+app.use(cors())
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The benefit of this method is that it's quick. The downside of this method is that it allows ANY site to make a call to this API. For an open API like the [Kanye Rest API](https://kanye.rest/), this is a good thing! But since our employers are super secretive, we want to be able to restrict which origins can query this API.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### One origin allowed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If we want to allow one origin to access our API, we can add some configuration to our `cors`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```javascript
+const cors = require('cors')
 
-## Learn More
+app.use(cors({
+  "origin": process.env.CLIENT_URL
+}))
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Future thinking
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You can look at the cors docs to impliment other configurations that allow you to:
+* Allow CORS only on certain routes _(it functions the same as our `isLoggedIn` middleware from express auth)_
+* Allow CORS from multiple origins _(good if you have different clients calling this API: think paid service)_
 
-### Code Splitting
+### JSON
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Since we're using a react app, we need to tell our express app that our body might be json (as opposed to `x-www-form-urlencoded`). RIght under where we import the middleware that handles form data, we're going to add one line:
 
-### Analyzing the Bundle Size
+```javascript
+app.use(express.json())
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### .env
+We're gonna be sneaky and hide our approved CORS origin in our `.env`, so let's add it into our `.env`. While we're at it, let's change our port to be 3001 so we don't conflict with our react server.
 
-### Making a Progressive Web App
+## Step 3: Client Side
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+to do list
+- [ ] set up server base url in our .env
+- [ ] make sure we can get info from our server
+- [ ] pass all dem deets into our `BountyCard` component
+- [ ] Link our `NewBounty` form page
+- [ ] write form handlers
+- [ ] Impliment a delete button
