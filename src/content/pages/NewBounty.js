@@ -34,8 +34,6 @@ export default function NewBounty(props) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    // change to an array
-
     sendToDb()
   }
 

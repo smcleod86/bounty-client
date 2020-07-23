@@ -73,7 +73,10 @@ main {
 
 /* Bounty Card */
 .bounty-card {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
   border: .1em solid rgba(128, 128, 128, 0.509);
   background-color: rgb(255, 250, 250);
   margin: 1em .25em;
@@ -88,12 +91,21 @@ main {
   box-shadow: 10px 8px 14px 8px rgba(128, 128, 128, 0.584);
 }
 
+.bounty-card > * {
+  margin-top: 0;
+}
+
 .bounty-container {
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: space-evenly;
   width: 90%;
   margin: 0 auto;
+}
+
+.delete-bounty-button {
+  display: inline-block;
+  align-self: center;
 }
 
 .hunter {
@@ -162,7 +174,6 @@ main {
 }
 
 /* Bounties Page */
-
 .new-bounty-card {
   display: block;
   text-decoration: none;

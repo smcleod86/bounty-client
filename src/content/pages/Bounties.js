@@ -30,14 +30,13 @@ export default function Bounties(props) {
     <h3>There are no bounties</h3> :
     bounties.map((bounty, i) => (
       // TODO: flesh out bounty div
-      <BountyCard key={`bounty-${i}`} {...bounty} />
+      <BountyCard key={`bounty-${i}`} {...bounty} setError={setError} />
     ))
 
   return (
     <div>
-      <h1>Intergalactic Bounty Board</h1>
-      {/* TODO: Error Card */}
       {error ? <ErrorCard error={error} /> : null}
+      <h1>Intergalactic Bounty Board</h1>
       <Link className="new-bounty-card" to='/bounties/add'>Add a Bounty</Link>
       <div className="bounty-container">
         {bountyList}
