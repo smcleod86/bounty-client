@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BountyCard from '../components/BountyCard';
+import ErrorCard from '../components/ErrorCard';
 import axios from 'axios';
 
 export default function Bounties(props) {
@@ -36,8 +37,8 @@ export default function Bounties(props) {
     <div>
       <h1>Intergalactic Bounty Board</h1>
       {/* TODO: Error Card */}
-      {error ? <p>{error}</p> : null}
-      <Link to='/bounties/add'>Add a Bounty</Link>
+      {error ? <ErrorCard error={error} /> : null}
+      <Link className="new-bounty-card" to='/bounties/add'>Add a Bounty</Link>
       <div className="bounty-container">
         {bountyList}
       </div>

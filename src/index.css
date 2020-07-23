@@ -55,6 +55,22 @@ main {
   flex-direction: column;
 }
 
+/* Error card */
+.error-card {
+  border: 2px solid rgb(89, 3, 3);
+  border-radius: .2em;
+  background-color: rgb(255, 227, 239);
+  width: 25%;
+  margin: 1em auto;
+  padding: .5em;
+  text-transform: uppercase;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  font-size: 1.5em;
+  color: rgb(89, 3, 3);
+  letter-spacing: .1em;
+}
+
 /* Bounty Card */
 .bounty-card {
   text-align: left;
@@ -91,7 +107,6 @@ main {
   margin: .25em;
   box-shadow: 2px 2px 4px rgba(24, 24, 72, 0.543);
 }
-
 
 /* Nav */
 .nav {
@@ -144,4 +159,28 @@ main {
   width: 15em;
   border: 1px solid rgb(198, 198, 198);
   border-radius: .2em;
+}
+
+/* Bounties Page */
+
+.new-bounty-card {
+  display: block;
+  text-decoration: none;
+  border: 2px solid rgb(205, 90, 130);
+  border-radius: .2em;
+  box-shadow: .25em .25em 6px rgba(205, 90, 130, 0.728);
+  width: 25%;
+  margin: 1em auto;
+  padding: .5em;
+  text-transform: uppercase;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  font-size: 1.5em;
+  color: rgb(89, 3, 3);
+  letter-spacing: .1em;
+  transition: box-shadow .6s;
+}
+
+.new-bounty-card:hover {
+  box-shadow: .5em .5em 6px rgba(205, 90, 130, 0.728);
 }
