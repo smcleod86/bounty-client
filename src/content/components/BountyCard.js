@@ -25,7 +25,7 @@ export default function BountyCard(props) {
       <ul>
         {hunterList}
       </ul>
-      <DeleteButton id={props._id} setError={props.setError} />
+      <DeleteButton id={props._id} setError={props.setError} refresh= {props.refresh} />
     </div>
   )
 }
